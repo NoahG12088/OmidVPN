@@ -60,11 +60,15 @@ class _BypassAppsScreenState extends ConsumerState<BypassAppsScreen> {
     }
   }
 
-  void _loadSelectedPackages() {
-    final selectedPackages = ref.read(bypassPackagesProvider);
-    setState(() {
-      _selectedPackages = List<String>.from(selectedPackages);
-    });
+  Future<void> _loadSelectedPackages() async {
+    try {
+      final selectedPackages = await ref.read(bypassPackagesProvider);
+      setState(() {
+        _selectedPackages = List<String>.from(selectedPackages);
+      });
+    } catch (e) {
+      debugPrint('Error loading selected packages: $e');
+    }
   }
 
   List<Map<String, dynamic>> get _filteredApps {
@@ -92,19 +96,31 @@ class _BypassAppsScreenState extends ConsumerState<BypassAppsScreen> {
   }
 
   void _saveSelectedPackages() async {
-    // Save the selected packages
-    await ref
-        .read(bypassPackagesProvider.notifier)
-        .setBypassPackages(_selectedPackages);
+    try {
+      // Save the selected packages
+      await ref
+          .read(bypassPackagesProvider.notifier)
+          .setBypassPackages(_selectedPackages);
 
-    // Show toast message
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Saved successfully'),
-          duration: Duration(seconds: 2),
-        ),
-      );
+      // Show toast message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Saved successfully'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    } catch (e) {
+      // Show error message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to save: $e'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
     }
   }
 

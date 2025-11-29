@@ -61,7 +61,7 @@ mixin HomeHandler {
     }
 
     // Get bypass packages
-    final bypassPackages = ref.read(bypassPackagesProvider);
+    final bypassPackages = await ref.read(bypassPackagesProvider);
     
     // Connect to VPN with bypass packages
     (await ref.read(

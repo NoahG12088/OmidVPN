@@ -42,12 +42,9 @@ class AppListMethodChannel(private val context: Context) : MethodCallHandler {
                         val appList = mutableListOf<Map<String, Any>>()
                         
                         for (appInfo in installedApps) {
-                            // Skip system apps if they don't have a launcher
-                            if ((appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0) {
-                                val launchIntent = packageManager.getLaunchIntentForPackage(appInfo.packageName)
-                                if (launchIntent == null) {
-                                    continue
-                                }
+                            // Check if app is enabled
+                            if (!appInfo.enabled) {
+                                continue
                             }
                             
                             val appName = packageManager.getApplicationLabel(appInfo).toString()
