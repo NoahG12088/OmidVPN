@@ -14,9 +14,16 @@ class CountrySelectorWidget extends ConsumerWidget {
     return serverList.when(
       data: (servers) {
         final countryMap = <String, String>{};
+        int premiumServerCount = 0;
+        
         for (final server in servers) {
           if (server.countryShort.isNotEmpty && server.countryLong.isNotEmpty) {
             countryMap[server.countryShort] = server.countryLong;
+          }
+          
+          // Count premium servers (those with "pro-server" hostname)
+          if (server.hostName.toLowerCase().contains('pro')) {
+            premiumServerCount++;
           }
         }
 
@@ -27,9 +34,10 @@ class CountrySelectorWidget extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: sortedCountries.length + 1,
+            itemCount: sortedCountries.length + 1 + (premiumServerCount > 0 ? 1 : 0), // +1 for "All Countries" and +1 for "Premium" if exists
             separatorBuilder: (_, __) => const SizedBox(width: 8),
             itemBuilder: (context, index) {
+              // First item: "All Countries"
               if (index == 0) {
                 return FilterChip(
                   label: const Text('All Countries'),
@@ -41,7 +49,28 @@ class CountrySelectorWidget extends ConsumerWidget {
                   },
                 );
               }
-              final countryShort = sortedCountries[index - 1];
+              
+              // Second item: "Premium" (if there are premium servers)
+              if (index == 1 && premiumServerCount > 0) {
+                return FilterChip(
+                  label: const Text('Premium'),
+                  selected: selectedCountry == 'PREMIUM',
+                  onSelected: (_) {
+                    ref
+                        .read(serverListAsyncNotifier.notifier)
+                        .filterByCountry('PREMIUM');
+                  },
+                );
+              }
+              
+              // Country items
+              final adjustedIndex = index - 1 - (premiumServerCount > 0 ? 1 : 0);
+              if (adjustedIndex >= sortedCountries.length) {
+                // This shouldn't happen, but just in case
+                return const SizedBox();
+              }
+              
+              final countryShort = sortedCountries[adjustedIndex];
               final countryLong = countryMap[countryShort] ?? countryShort;
               return FilterChip(
                 label: Text(countryLong),

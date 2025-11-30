@@ -9,19 +9,42 @@ mixin ServerListState {
     final selectedCountry = ref.watch(selectedCountryProvider);
 
     return serverList.whenData((servers) {
+      // Sort all servers by uptime (days) in ascending order
+      // But put premium servers first
       final sortedServers = List<ServerInfo>.from(servers)
-        ..sort((a, b) => toDays(a.uptime).compareTo(toDays(b.uptime)));
+        ..sort((a, b) {
+          // Check if servers are premium
+          final aIsPremium = a.hostName.toLowerCase().contains('pro');
+          final bIsPremium = b.hostName.toLowerCase().contains('pro');
+          
+          // If one is premium and the other isn't, premium comes first
+          if (aIsPremium && !bIsPremium) return -1;
+          if (!aIsPremium && bIsPremium) return 1;
+          
+          // If both are premium or both are not premium, sort by uptime
+          return toDays(a.uptime).compareTo(toDays(b.uptime));
+        });
 
-      if (selectedCountry == null) {
-        return sortedServers;
+      // If "Premium" is selected, show only premium servers
+      if (selectedCountry == 'PREMIUM') {
+        return sortedServers
+            .where((server) => server.hostName.toLowerCase().contains('pro'))
+            .toList();
       }
-      return sortedServers
-          .where(
-            (server) =>
-                server.countryShort.toLowerCase() ==
-                selectedCountry.toLowerCase(),
-          )
-          .toList();
+
+      // If a specific country is selected, filter by that country
+      if (selectedCountry != null) {
+        return sortedServers
+            .where(
+              (server) =>
+                  server.countryShort.toLowerCase() ==
+                  selectedCountry.toLowerCase(),
+            )
+            .toList();
+      }
+      
+      // Otherwise, show all servers (with premium servers at the top)
+      return sortedServers;
     });
   }
 

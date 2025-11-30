@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:omidvpn/api/domain/entity/vpn_stage.dart';
 import 'package:omidvpn/api/lang/en.dart';
+import 'package:omidvpn/api/lang/lang.dart';
 import 'package:omidvpn/ui/shared/openvpn_service.dart';
 import 'package:omidvpn/ui/server_list/data/data_source/json_server_source.dart';
 import 'package:omidvpn/ui/server_list/data/repository/json_server_repository.dart';
@@ -75,6 +76,13 @@ final vpngateRepositoryProvider = FutureProvider((Ref ref) async {
       baseURL:
           'https://raw.githubusercontent.com/fdciabdul/Vpngate-Scraper-API/refs/heads/main/json/data.json',
     ),
+    additionalSources: [
+      JsonServerRemoteSource(
+        dio: dio,
+        baseURL:
+            'https://raw.githubusercontent.com/code3-dev/omidvpn-api/refs/heads/master/api/index.json',
+      ),
+    ],
     localSource: cacheManager,
     cacheKey: 'json_servers.json',
   );

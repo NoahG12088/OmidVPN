@@ -9,12 +9,14 @@ import 'package:omidvpn/ui/shared/one_day_cache.dart';
 class JsonServerRepository implements VpnRepository {
   final JsonServerRemoteSource remoteSource;
   final OneDayFileCacheManager localSource;
+  final List<JsonServerRemoteSource> additionalSources;
 
   final String _cacheKey;
 
   JsonServerRepository({
     required this.remoteSource,
     required this.localSource,
+    this.additionalSources = const [],
     required cacheKey,
   }) : _cacheKey = cacheKey;
 
@@ -36,9 +38,24 @@ class JsonServerRepository implements VpnRepository {
       return JsonServerListMapper.fromJson(jsonData: jsonData);
     }
 
-    final List<dynamic> jsonData = await remoteSource.getServerList();
-    final jsonString = jsonEncode(jsonData);
+    // Fetch data from primary source
+    final List<dynamic> primaryData = await remoteSource.getServerList();
+    
+    // Fetch data from additional sources
+    List<dynamic> combinedData = List.from(primaryData);
+    
+    for (final source in additionalSources) {
+      try {
+        final additionalData = await source.getServerList();
+        combinedData.addAll(additionalData);
+      } catch (e) {
+        // Continue with other sources if one fails
+        continue;
+      }
+    }
+
+    final jsonString = jsonEncode(combinedData);
     localSource.save(key: _cacheKey, content: jsonString);
-    return JsonServerListMapper.fromJson(jsonData: jsonData);
+    return JsonServerListMapper.fromJson(jsonData: combinedData);
   }
 }

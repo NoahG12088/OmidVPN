@@ -35,46 +35,89 @@ sealed class JsonServerListMapper {
     List<ServerInfo> list = [];
 
     try {
-      // The JSON structure is an array with one object that has a "servers" array
-      if (jsonData.isNotEmpty && jsonData[0] is Map<String, dynamic>) {
-        final serversData = jsonData[0]['servers'] as List<dynamic>;
+      // Handle both formats: array of objects and array of arrays with "servers" key
+      for (int i = 0; i < jsonData.length; i++) {
+        if (jsonData[i] is Map<String, dynamic>) {
+          // Check if this is the new format with "servers" array
+          if ((jsonData[i] as Map<String, dynamic>).containsKey('servers')) {
+            final serversData = (jsonData[i] as Map<String, dynamic>)['servers'] as List<dynamic>;
+            
+            for (int j = 0; j < serversData.length; j++) {
+              try {
+                final server = serversData[j] as Map<String, dynamic>;
 
-        for (int i = 0; i < serversData.length; i++) {
-          try {
-            final server = serversData[i] as Map<String, dynamic>;
+                // Skip servers with empty hostname or IP
+                if ((server['hostname'] as String? ?? '').isEmpty ||
+                    (server['ip'] as String? ?? '').isEmpty) {
+                  continue;
+                }
 
-            // Skip servers with empty hostname or IP
-            if ((server['hostname'] as String? ?? '').isEmpty ||
-                (server['ip'] as String? ?? '').isEmpty) {
+                list.add(
+                  ServerInfo(
+                    hostName: server['hostname'] as String? ?? '',
+                    ip: server['ip'] as String? ?? '',
+                    score: int.tryParse(server['score'].toString()) ?? 0,
+                    ping: int.tryParse(server['ping'].toString()) ?? -1,
+                    speed: double.tryParse(server['speed'].toString())?.round() ?? 0,
+                    countryLong: server['countrylong'] as String? ?? '',
+                    countryShort: server['countryshort'] as String? ?? '',
+                    numVpnSessions:
+                        int.tryParse(server['numvpnsessions'].toString()) ?? 0,
+                    uptime: double.tryParse(server['uptime'].toString())?.round() ?? 0,
+                    totalUsers: int.tryParse(server['totalusers'].toString()) ?? 0,
+                    totalTraffic:
+                        double.tryParse(server['totaltraffic'].toString())?.round() ?? 0,
+                    logType: server['logtype'] as String? ?? '',
+                    operator: server['operator'] as String? ?? '',
+                    message: server['message'] as String? ?? '',
+                    vpnConfig: _decodeVpnConfig(
+                      server['openvpn_configdata_base64'] as String? ?? '',
+                    ),
+                  ),
+                );
+              } catch (serverError) {
+                debugPrint('Error parsing server at index $j: $serverError');
+                continue;
+              }
+            }
+          } else {
+            // Handle the original format directly
+            try {
+              final server = jsonData[i] as Map<String, dynamic>;
+
+              // Skip servers with empty hostname or IP
+              if ((server['hostname'] as String? ?? '').isEmpty ||
+                  (server['ip'] as String? ?? '').isEmpty) {
+                continue;
+              }
+
+              list.add(
+                ServerInfo(
+                  hostName: server['hostname'] as String? ?? '',
+                  ip: server['ip'] as String? ?? '',
+                  score: int.tryParse(server['score'].toString()) ?? 0,
+                  ping: int.tryParse(server['ping'].toString()) ?? -1,
+                  speed: double.tryParse(server['speed'].toString())?.round() ?? 0,
+                  countryLong: server['countrylong'] as String? ?? '',
+                  countryShort: server['countryshort'] as String? ?? '',
+                  numVpnSessions:
+                      int.tryParse(server['numvpnsessions'].toString()) ?? 0,
+                  uptime: double.tryParse(server['uptime'].toString())?.round() ?? 0,
+                  totalUsers: int.tryParse(server['totalusers'].toString()) ?? 0,
+                  totalTraffic:
+                      double.tryParse(server['totaltraffic'].toString())?.round() ?? 0,
+                  logType: server['logtype'] as String? ?? '',
+                  operator: server['operator'] as String? ?? '',
+                  message: server['message'] as String? ?? '',
+                  vpnConfig: _decodeVpnConfig(
+                    server['openvpn_configdata_base64'] as String? ?? '',
+                  ),
+                ),
+              );
+            } catch (serverError) {
+              debugPrint('Error parsing server at index $i: $serverError');
               continue;
             }
-
-            list.add(
-              ServerInfo(
-                hostName: server['hostname'] as String? ?? '',
-                ip: server['ip'] as String? ?? '',
-                score: int.tryParse(server['score'].toString()) ?? 0,
-                ping: int.tryParse(server['ping'].toString()) ?? -1,
-                speed: int.tryParse(server['speed'].toString()) ?? 0,
-                countryLong: server['countrylong'] as String? ?? '',
-                countryShort: server['countryshort'] as String? ?? '',
-                numVpnSessions:
-                    int.tryParse(server['numvpnsessions'].toString()) ?? 0,
-                uptime: int.tryParse(server['uptime'].toString()) ?? 0,
-                totalUsers: int.tryParse(server['totalusers'].toString()) ?? 0,
-                totalTraffic:
-                    int.tryParse(server['totaltraffic'].toString()) ?? 0,
-                logType: server['logtype'] as String? ?? '',
-                operator: server['operator'] as String? ?? '',
-                message: server['message'] as String? ?? '',
-                vpnConfig: _decodeVpnConfig(
-                  server['openvpn_configdata_base64'] as String? ?? '',
-                ),
-              ),
-            );
-          } catch (serverError) {
-            debugPrint('Error parsing server at index $i: $serverError');
-            continue;
           }
         }
       }

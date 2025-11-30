@@ -4,6 +4,7 @@ import 'package:omidvpn/api/api/api.dart';
 import 'package:omidvpn/ui/about/about_screen.dart';
 import 'package:omidvpn/ui/bypass_apps/bypass_apps_screen.dart';
 import 'package:omidvpn/ui/privacy/privacy_screen.dart';
+import 'package:omidvpn/ui/settings/open_source_licenses_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:io' show exit;
 import 'package:omidvpn/api/lang/lang.dart';
@@ -110,6 +111,17 @@ class SettingsScreen extends ConsumerWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const PrivacyScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Open Source Licenses'),
+              leading: Icon(Icons.code),
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OpenSourceLicensesScreen()),
                 );
               },
             ),
